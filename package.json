@@ -1,5 +1,5 @@
 {
-  "name": "ts-result",
+  "name": "@bismarckx/ts-result",
   "version": "0.0.1",
   "type": "module",
   "description": "An Rust like Result API for handling Requests",
@@ -23,6 +23,7 @@
     }
   },
   "scripts": {
+    "demo": "tsx examples/demo.ts",
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest",
@@ -36,6 +37,9 @@
     "cs:version": "changeset version",
     "release": "npm run build && changeset publish"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@eslint/js": "^10.0.1",
@@ -43,6 +47,7 @@
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.1",
     "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.4.0",
     "typescript-eslint": "^8.56.1",
     "vitest": "^4.0.18"
