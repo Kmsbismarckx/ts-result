@@ -1,12 +1,15 @@
 {
   "name": "ts-result",
   "version": "0.0.1",
-  "description": "An Rust lile Result API for handling Requests",
+  "type": "module",
+  "description": "An Rust like Result API for handling Requests",
   "license": "MIT",
-  "files": ["dist"],
-  "main":   "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "types":  "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -24,13 +27,21 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "cs": "changeset",
     "cs:version": "changeset version",
     "release": "npm run build && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
+    "tsup": "^8.0.0",
     "typescript": "^5.4.0",
-    "tsup": "^8.0.0"
+    "typescript-eslint": "^8.56.1"
   }
 }
