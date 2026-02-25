@@ -141,6 +141,13 @@ export function match<TIn, TOut>(
       const tag = (value as Record<string, unknown>)[field];
       if (typeof tag === "string" && tag in arms) {
         const arm = (arms as Record<string, unknown>)[tag];
+        // Unwrap Result<T, E>: Ok handlers receive T, Err handlers receive E
+        if (tag === "Ok" && "value" in (value as object)) {
+          return resolveArm(arm, (value as unknown as { value: unknown }).value);
+        }
+        if (tag === "Err" && "error" in (value as object)) {
+          return resolveArm(arm, (value as unknown as { error: unknown }).error);
+        }
         return resolveArm(arm, value);
       }
     }
@@ -216,7 +223,8 @@ export function when<T>(predicate: (value: T) => boolean): string {
 // ─────────────────────────────────────────────
 
 type MatchArms<TIn, TOut> = {
-  [key: string]: Arm<TIn, TOut> | Arm<unknown, TOut>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: Arm<any, TOut>;
   [_]?: Arm<TIn, TOut>;
 };
 
